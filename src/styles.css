@@ -22,6 +22,7 @@ body {
 .header-img {
   max-width: 300px;
   padding: 30px;
+  -webkit-box-shadow: 19px 20px 40px #ccc;
 }
 
 .header {
@@ -81,4 +82,27 @@ small {
 
 .btn:hover {
   background-color: rgb(56, 109, 194);
+}
+
+.card {
+  background-color: white;
+  -webkit-box-shadow: 19px 20px 40px #ccc;
+  border-radius: 1rem;
+  display: flex;
+  margin: 1.2rem;
+  padding: 1.2rem;
+}
+
+.card-img {
+  max-width: 300px;
+  margin: 1.2rem;
+  -webkit-box-shadow: 10px 10px 20px #ccc;
+}
+
+.card-title {
+  font-size: 1.7rem;
+}
+
+.card-content {
+  margin: 1rem;
 }

@@ -49,11 +49,13 @@ function SearchMovies() {
           Search
         </button>
       </form>
-      {movies
-        .filter((e) => e.poster_path != null)
-        .map((movie) => {
-          return <Movie movie={movie} key={movie.id} />
-        })}
+      <div className='card-list'>
+        {movies
+          .filter((e) => e.poster_path != null)
+          .map((movie) => {
+            return <Movie movie={movie} key={movie.id} />
+          })}
+      </div>
     </>
   )
 }
