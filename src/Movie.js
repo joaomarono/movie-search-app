@@ -28,7 +28,7 @@ function Movie({ movie }) {
         <p>
           <small>{'Popularity: ' + popularity}</small>
         </p>
-        <p>{'Description: ' + overview}</p>
+        <p className='card-desc'>{'Description: ' + overview}</p>
       </div>
     </div>
   )
