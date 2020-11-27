@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Movie from './Movie'
-
+import Header from './Header'
 function SearchMovies() {
   const [query, setQuery] = useState('')
   const [movies, setMovies] = useState([])
@@ -32,7 +32,8 @@ function SearchMovies() {
   
 */
   return (
-    <>
+    <div className='container'>
+      <Header title={'Movie Search App'} />
       <form className='form' onSubmit={searchmovies}>
         <label htmlFor='query' className='label'>
           Movie Name
@@ -56,7 +57,7 @@ function SearchMovies() {
             return <Movie movie={movie} key={movie.id} />
           })}
       </div>
-    </>
+    </div>
   )
 }
 
