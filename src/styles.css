@@ -22,6 +22,7 @@ body {
 .header-img {
   max-width: 300px;
   padding: 30px;
+  -webkit-box-shadow: 19px 20px 40px #ccc;
 }
 
 .header {
@@ -53,7 +54,6 @@ small {
   padding: 0.5rem 2rem;
   font-size: 1.5rem;
   border-radius: 20px;
-
   cursor: pointer;
   border: 1px solid #ddd;
   margin-bottom: 1rem;
@@ -61,6 +61,7 @@ small {
 
 .input:focus {
   outline: none;
+  border: 2px solid #777;
 }
 .btn {
   border-radius: 10px;
@@ -72,6 +73,7 @@ small {
   font-family: 'Roboto';
   font-weight: 600;
   transition: background-color 100ms;
+  margin-bottom: 1.5rem;
 }
 
 .btn:focus {
@@ -80,4 +82,51 @@ small {
 
 .btn:hover {
   background-color: rgb(56, 109, 194);
+}
+
+.card {
+  background-color: white;
+  -webkit-box-shadow: 19px 20px 40px #ccc;
+  border-radius: 1rem;
+  display: flex;
+  margin: 1.2rem;
+  padding: 1.2rem;
+}
+
+.card-img {
+  max-width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  -webkit-box-shadow: 10px 10px 20px #ccc;
+}
+
+.card-title {
+  font-size: 1.7rem;
+}
+
+.card-content {
+  margin: 1rem;
+}
+
+@media (max-width: 496px) {
+  .card {
+    display: grid;
+  }
+  .card-img {
+    max-width: 90%;
+    height: auto;
+  }
+
+  .label {
+    margin-top: 1.2rem;
+  }
+  .header-img {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 1009px) {
+  .card {
+    display: grid;
+  }
 }
