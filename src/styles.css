@@ -94,8 +94,9 @@ small {
 }
 
 .card-img {
-  max-width: 300px;
-  margin: 1.2rem;
+  max-width: 90%;
+  text-align: center;
+  margin: 0 auto;
   -webkit-box-shadow: 10px 10px 20px #ccc;
 }
 
@@ -105,4 +106,27 @@ small {
 
 .card-content {
   margin: 1rem;
+}
+
+@media (max-width: 496px) {
+  .card {
+    display: grid;
+  }
+  .card-img {
+    max-width: 90%;
+    height: auto;
+  }
+
+  .label {
+    margin-top: 1.2rem;
+  }
+  .header-img {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 1009px) {
+  .card {
+    display: grid;
+  }
 }
