@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Movie({ movie }) {
+function Movie({ movie, list }) {
   const {
     poster_path,
     release_date,
@@ -9,6 +9,10 @@ function Movie({ movie }) {
     popularity,
     vote_average,
   } = movie
+
+  const handleAdd = (e) => {
+    console.log(title)
+  }
 
   return (
     <div className='card'>
@@ -30,6 +34,9 @@ function Movie({ movie }) {
         </p>
         <p className='card-desc'>{'Description: ' + overview}</p>
       </div>
+      <button type='button' onClick={(e) => handleAdd(e)}>
+        Add Movie
+      </button>
     </div>
   )
 }
