@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-function Movie({ movie, list }) {
+function Movie({ movie, handleAdd }) {
   const {
     poster_path,
     release_date,
@@ -8,11 +8,10 @@ function Movie({ movie, list }) {
     overview,
     popularity,
     vote_average,
+    id,
   } = movie
 
-  const handleAdd = (e) => {
-    console.log(title)
-  }
+  useEffect(() => {}, [])
 
   return (
     <div className='card'>
@@ -34,7 +33,7 @@ function Movie({ movie, list }) {
         </p>
         <p className='card-desc'>{'Description: ' + overview}</p>
       </div>
-      <button type='button' onClick={(e) => handleAdd(e)}>
+      <button type='button' onClick={() => handleAdd(id)}>
         Add Movie
       </button>
     </div>

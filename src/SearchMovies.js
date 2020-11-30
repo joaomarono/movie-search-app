@@ -10,34 +10,37 @@ function SearchMovies() {
   const searchmovies = async (e) => {
     // This will use the API and search for a movie giv
     e.preventDefault()
-
     const url = `https://api.themoviedb.org/3/search/movie?api_key=6eb625c54f1a555865858ce6bcf0329d&language=en-US&query=${query}&page=1&include_adault=false`
-
     const res = await fetch(url)
     const data = await res.json()
-
     setMovies(data.results)
+  }
+
+  const handleAdd = async (id) => {
+    if (favorites.filter((e) => e === id).length !== 0) {
+      return
+    }
+    const newFav = [...favorites, id]
+    setFavorites(newFav)
   }
 
   const setCookie = (name, hours) => {
     let value = JSON.stringify(favorites)
-    let expires
     let date = new Date()
-    expires = date.setTime(date.getTime() + Number(hours) * 3600 * 1000)
+    let expires = date.setTime(date.getTime() + Number(hours) * 3600 * 1000)
     document.cookie =
-      name + '=' + value + '; path=/; expires = ' + date.toHMTString()
+      name + '=' + value + '; path=/list; expires = ' + expires.toString
   }
 
   const getCookie = (name) => {
     if (checkCookie()) {
       // Check if a cookie exist
-      start = document.cookie.indexOf(name + '=') //Go searrch for the name of the cookie
-      console.log(start)
+      let start = document.cookie.indexOf(name + '=') //Go searrch for the name of the cookie
       if (start !== -1) {
         // Search for the cookie name
         start = start + name.length + 1
-        end = document.cookie.indexOf(';', start)
-        if (end == -1) {
+        let end = document.cookie.indexOf(';', start)
+        if (end === -1) {
           // If the cookie name-value pair is the last, the cookie string do not have more ';'
           end = document.cookie.length
         }
@@ -63,18 +66,17 @@ function SearchMovies() {
     //This will run on the first render and will get the info from the cookie
     checkCookie()
       ? setFavorites(getCookie('movies'))
-      : setCookie('movies', [], 24 * 365 * 10) //10 years
+      : setCookie('movies', 24 * 365 * 10) //10 years
   }, [])
 
   useEffect(() => {
-    // This will trigger render when a element is add to the favorite list of movies
-    console.log(favlist)
-  }, [favList])
+    setCookie('movies', 24 * 365 * 10)
+  }, [favorites])
 
-  useEffect(() => {
+  /*useEffect(() => {
     //Next Step: No need button, while the user is writing the input the movies will show, use useEffect to search onchange input
     //Whenever the query change, we make a search for movies
-  }, query)
+  }, query)*/
 
   return (
     <div className='container'>
@@ -99,7 +101,7 @@ function SearchMovies() {
         {movies
           .filter((e) => e.poster_path != null)
           .map((movie) => {
-            return <Movie movie={movie} key={movie.id} />
+            return <Movie movie={movie} handleAdd={handleAdd} key={movie.id} />
           })}
       </div>
     </div>
