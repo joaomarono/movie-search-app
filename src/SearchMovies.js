@@ -16,6 +16,13 @@ function SearchMovies() {
     setMovies(data.results)
   }
 
+  const searchmoviesuse = async (e) => {
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=6eb625c54f1a555865858ce6bcf0329d&language=en-US&query=${query}&page=1&include_adault=false`
+    const res = await fetch(url)
+    const data = await res.json()
+    setMovies(data.results)
+  }
+
   const handleAdd = async (id) => {
     if (favorites.filter((e) => e === id).length !== 0) {
       return
@@ -73,15 +80,16 @@ function SearchMovies() {
     setCookie('movies', 24 * 365 * 10)
   }, [favorites])
 
-  /*useEffect(() => {
+  useEffect(() => {
     //Next Step: No need button, while the user is writing the input the movies will show, use useEffect to search onchange input
     //Whenever the query change, we make a search for movies
-  }, query)*/
+    searchmoviesuse(query)
+  }, [query])
 
   return (
     <div className='container'>
       <Header title={'Movie Search App'} />
-      <form className='form' onSubmit={searchmovies}>
+      <form className='form'>
         <label htmlFor='query' className='label'>
           Movie Name
         </label>
@@ -93,16 +101,16 @@ function SearchMovies() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         ></input>
-        <button type='submit' className='btn'>
-          Search
-        </button>
       </form>
       <div className='card-list'>
-        {movies
-          .filter((e) => e.poster_path != null)
-          .map((movie) => {
-            return <Movie movie={movie} handleAdd={handleAdd} key={movie.id} />
-          })}
+        {movies &&
+          movies
+            .filter((e) => e.poster_path != null)
+            .map((movie) => {
+              return (
+                <Movie movie={movie} handleAdd={handleAdd} key={movie.id} />
+              )
+            })}
       </div>
     </div>
   )
